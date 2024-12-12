@@ -12,11 +12,16 @@
 <body>
     <header class="header">
         <div class="logo-square"></div>
+        <button class="mobile-menu-btn" aria-label="Открыть меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav>
             <a href="index.html">Главная</a>
-            <a href="basics.html">Основы 3D</a>
+            <a href="basics.html">Основы 3D-моделирования</a>
             <a href="software.html">ПО для 3D</a>
-            <a href="courses.html">Курсы</a>
+            <a href="courses.html">Каталог курсов по 3D</a>
         </nav>
     </header>
 
@@ -123,5 +128,33 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target) && nav.classList.contains('active')) {
+                    mobileMenuBtn.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking on a link
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

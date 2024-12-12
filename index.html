@@ -13,6 +13,11 @@
 <body>
     <header class="header">
         <div class="logo-square"></div>
+        <button class="mobile-menu-btn" aria-label="Открыть меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav>
             <a href="index.html">Главная</a>
             <a href="basics.html">Основы 3D-моделирования</a>
@@ -20,7 +25,6 @@
             <a href="courses.html">Каталог курсов по 3D</a>
         </nav>
     </header>
-
     <div class="hero">
         <div class="video-container">
             <video autoplay muted loop>
@@ -108,7 +112,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p>как галерея с фотками</p>
                         </div>
                         <div class="slider-nav">
                             <button class="slider-button prev-button" aria-label="Предыдущий слайд">←</button>
@@ -206,6 +209,55 @@
             </div>
         </div>
     </footer>
+    
+    <div class="notification" id="notification">Ваша заявка успешно отправлена!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const notification = document.getElementById('notification');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show notification
+                notification.classList.add('show');
+                
+                // Clear form fields
+                form.reset();
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target) && nav.classList.contains('active')) {
+                    mobileMenuBtn.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking on a link
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        });
+    </script>
 
     <!-- Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
