@@ -825,7 +825,7 @@ section p {
 }
 
 .footer-nav a:hover {
-    color: var(--primary-color); /* Цвет текста при наведении */
+    color: white; /* Цвет текста при наведении */
     transform: translateX(5px); /* Смещение вправо при наведении */
 }
 
@@ -869,21 +869,6 @@ section p {
     flex-direction: column; /* Направление флекса */
     gap: 12px; /* Расстояние между элементами */
     margin: 25px 0; /* Отступы */
-}
-
-.footer-nav a {
-    color: var(--text-light); /* Цвет текста */
-    text-decoration: none; /* Убираем подчеркивание */
-    transition: var(--transition); /* Переход */
-    font-size: 1rem; /* Размер шрифта */
-    display: inline-flex; /* Встроенный флекс */
-    align-items: center; /* Выравнивание по центру */
-    padding: 5px 0; /* Внутренние отступы */
-}
-
-.footer-nav a:hover {
-    color: var(--primary-color); /* Цвет текста при наведении */
-    transform: translateX(5px); /* Смещение вправо при наведении */
 }
 
 .social-links {
